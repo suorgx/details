@@ -26,14 +26,12 @@ defineProps({
         v-for="user in users"
         :key="user.id"
       >
-        <div
-          class="flex items-center gap-1 p-2 sm:p-5"
-        >
+        <div class="flex items-center gap-2 p-2 sm:p-5">
           <div class="flex-shrink-0">
             <img
-              alt="user."
-              :src="user.image"
-              class="mx-auto block h-10 w-10 rounded-full object-cover"
+              alt="user image"
+              :src="`${user.image}?set=set4`"
+              class="mx-auto block h-14 w-14 rounded-full object-cover"
             />
           </div>
           <a class="cursor-pointer underline hover:text-green-500" @click="$router.push(`/user/${user.id}`)">

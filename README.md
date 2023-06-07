@@ -1,4 +1,4 @@
-# [Organize]()
+# [details]()
 
 ## О проекте:
 
@@ -19,6 +19,7 @@
 - SCSS
 - Tailwind
 - Pinia
+- REST API
 
 ## Установка:
 
