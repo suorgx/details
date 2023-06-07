@@ -6,5 +6,6 @@ const usersStore = useUsersStore()
 </script>
 
 <template>
-  <users-list :users="usersStore.users"></users-list>
+  <div v-if="usersStore.loading">Loading...</div>
+  <users-list :users="usersStore.users" v-else></users-list>
 </template>

@@ -2,20 +2,25 @@ import { defineStore } from 'pinia'
 
 export const useUsersStore = defineStore('usersStore', {
   state: () => ({
-    users: []
+    users: [],
+    loading: true
   }),
   actions: {
     async getUsers () {
       try {
+        this.loading = true
         const res = await fetch('https://dummyjson.com/users')
         const data = await res.json()
         this.users = data.users
       } catch (error) {
         console.error(error)
+      } finally {
+        this.loading = false
       }
     },
     async getTodos (id) {
       try {
+        this.loading = true
         const res = await fetch(`https://dummyjson.com/todos/user/${id}`)
         const data = await res.json()
         const todos = data.todos
@@ -23,6 +28,8 @@ export const useUsersStore = defineStore('usersStore', {
         if (index !== -1) this.addTodosToUser(index, todos)
       } catch (error) {
         console.error(error)
+      } finally {
+        this.loading = false
       }
     },
     addTodosToUser (index, todos) {
