@@ -1,4 +1,8 @@
 <script setup>
+import { useDataStore } from '../store/DataStore.js'
+
+const dataStore = useDataStore()
+
 defineProps({
   users: {
     type: Array,
@@ -6,14 +10,14 @@ defineProps({
   }
 })
 
-const emit = defineEmits(['todoModal', 'detailModal'])
-
 const handleTodoModal = (id) => {
-  emit('todoModal', id)
+  dataStore.modal = true
+  dataStore.idModal = Number(id)
 }
 
 const handleDetailModal = (id) => {
-  emit('detailModal', id)
+  dataStore.modal = true
+  dataStore.idModal = Number(id)
 }
 </script>
 
