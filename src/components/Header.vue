@@ -1,16 +1,12 @@
-<script setup>
-import { RouterLink } from 'vue-router'
-</script>
-
 <template>
   <header class="flex items-center justify-between bg-white header py-02">
     <nav class="text-lg font-semibold nav">
       <ul class="flex items-center">
         <li>
-          <RouterLink to="/">Users</RouterLink>
+          <router-link to="/">Users</router-link>
         </li>
         <li>
-          <RouterLink to="/payments">Payments</RouterLink>
+          <router-link to="/payments">Payments</router-link>
         </li>
       </ul>
     </nav>

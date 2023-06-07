@@ -26,7 +26,7 @@ defineProps({
         v-for="user in users"
         :key="user.id"
       >
-        <div class="flex items-center gap-2 p-2 sm:p-5">
+        <div class="flex items-center gap-2 p-1 sm:py-2 sm:px-5">
           <div class="flex-shrink-0">
             <img
               alt="user image"
@@ -34,14 +34,14 @@ defineProps({
               class="mx-auto block h-14 w-14 rounded-full object-cover"
             />
           </div>
-          <a class="cursor-pointer underline hover:text-green-500" @click="$router.push(`/user/${user.id}`)">
+          <router-link class="cursor-pointer underline hover:text-green-500" v-bind:to="`/user/${user.id}`">
             {{ user.firstName }} {{ user.lastName }}
-          </a>
+          </router-link>
         </div>
-        <div class="p-2 sm:p-5">
+        <div class="p-1 sm:py-2 sm:px-5">
           {{ user.email }}
         </div>
-        <div class="p-2 sm:p-5">
+        <div class="p-1 sm:py-2 sm:px-5">
           {{ user.phone }}
         </div>
       </div>
