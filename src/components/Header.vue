@@ -6,7 +6,7 @@
           <router-link to="/">Users</router-link>
         </li>
         <li class="cursor-pointer border-b-2 border-green-500 border-opacity-0 duration-200 hover:border-opacity-100 hover:text-green-500">
-          <router-link to="/payments">Payments</router-link>
+          <router-link to="/carts">Carts</router-link>
         </li>
       </ul>
     </nav>

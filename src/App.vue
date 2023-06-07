@@ -1,8 +1,8 @@
 <script setup>
-import { useUsersStore } from './store/UsersStore.js'
+import { useDataStore } from './store/DataStore.js'
 
-const usersStore = useUsersStore()
-if (!usersStore.users.length) usersStore.initialize()
+const dataStore = useDataStore()
+if (!dataStore.users.length) dataStore.initialize()
 </script>
 
 <template>
