@@ -1,10 +1,13 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { useUsersStore } from './store/UsersStore.js'
+
+const usersStore = useUsersStore()
+if (!usersStore.users.length) usersStore.initialize()
 </script>
 
 <template>
   <Header />
   <main>
-    <RouterView />
+    <router-view></router-view>
   </main>
 </template>
