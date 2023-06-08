@@ -20,6 +20,11 @@ const user = computed(() => {
 const cart = computed(() => {
   return dataStore.carts.find(el => Number(el.id) === Number(dataStore.idModal))
 })
+
+const handleSave = () => {
+  dataStore.updateUser()
+  closeModal()
+}
 </script>
 
 <template>
@@ -51,10 +56,7 @@ const cart = computed(() => {
         <div class="flex items-center rounded-b border-t border-gray-200 p-2 sm:p-6 space-x-2" v-if="dataStore.modalOption !== 'cart'">
           <button-modal
             text="Save"
-          ></button-modal>
-          <button-modal
-            detail
-            text="Cancel"
+            @click="handleSave"
           ></button-modal>
         </div>
       </div>

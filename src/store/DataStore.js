@@ -9,6 +9,10 @@ export const useDataStore = defineStore('dataStore', {
     modalOption: '',
     loading: true,
     idModal: null,
+    newFirstName: '',
+    newLastName: '',
+    newEmail: '',
+    newPhone: '',
   }),
   actions: {
     async getUsers () {
@@ -55,6 +59,12 @@ export const useDataStore = defineStore('dataStore', {
         this.getUsers(),
         this.getCarts()
       ])
+    },
+    updateUser () {
+      if (this.newFirstName.length) this.users[this.idModal - 1].firstName = this.newFirstName
+      if (this.newLastName.length) this.users[this.idModal - 1].lastName = this.newLastName
+      if (this.newEmail.length) this.users[this.idModal - 1].email = this.newEmail
+      if (this.newPhone.length) this.users[this.idModal - 1].phone = this.newPhone
     }
   }
 })

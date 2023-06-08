@@ -22,6 +22,7 @@ const handleUserModal = (id) => {
   dataStore.modalOption = 'user'
   dataStore.idModal = id
   dataStore.modal = true
+  dataStore.newFirstName = dataStore.newLastName = dataStore.newPhone = dataStore.newEmail = ''
 }
 </script>
 
@@ -70,7 +71,7 @@ const handleUserModal = (id) => {
             <button-modal
               @click="handleUserModal(user.id)"
               detail
-              text="Details"
+              text="Edit"
             ></button-modal>
           </div>
         </li>
