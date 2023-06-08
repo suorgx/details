@@ -32,8 +32,8 @@ const cart = computed(() => {
     <div class="relative max-h-full w-full max-w-2xl">
       <div class="relative rounded-lg bg-white shadow sm:shadow-2xl">
         <div class="flex items-start justify-between rounded-t border-b p-2 sm:p-4">
-          <h3 class="text-xl font-semibold text-gray-900" v-if="dataStore.idModal">
-            {{ dataStore.modalOption === 'cart' ? `${dataStore.users[cart.id].firstName} ${dataStore.users[cart.id].lastName}` : `${user.firstName} ${user.lastName}` }}
+          <h3 class="text-xl text-gray-900" v-if="dataStore.idModal">
+            {{ dataStore.modalOption === 'cart' ? `ID cart: ${cart.id}` : `${user.firstName} ${user.lastName}` }}
           </h3>
           <button
             type="button"
@@ -43,7 +43,7 @@ const cart = computed(() => {
             <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
           </button>
         </div>
-        <div class="p-0 space-y-2 sm:p-6 sm:space-y-6 max-h-80 sm:max-h-full overflow-x-auto" v-if="dataStore.idModal">
+        <div class="p-1 space-y-2 sm:p-6 sm:space-y-6 max-h-80 sm:max-h-full overflow-x-auto" v-if="dataStore.idModal">
           <user-card :user="user" v-if="dataStore.modalOption === 'user'"></user-card>
           <todos-list :user="user" v-else-if="dataStore.modalOption === 'todos'"></todos-list>
           <cart-details :cart="cart" v-else-if="dataStore.modalOption === 'cart'"></cart-details>

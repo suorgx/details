@@ -12,7 +12,7 @@ defineProps({
 <template>
   <div class="max-w-full overflow-hidden bg-white" v-if="user">
     <dl>
-      <div class="items-center bg-white px-2 py-1 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="items-center bg-white px-0 py-1 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-normal uppercase text-gray-800">
           Image
         </dt>
@@ -24,7 +24,7 @@ defineProps({
           />
         </dd>
       </div>
-      <div class="items-center bg-white px-2 py-1 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="items-center bg-white px-0 py-1 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-normal uppercase text-gray-800">
           First Name
         </dt>
@@ -32,7 +32,7 @@ defineProps({
           <input-modal placeholder="First Name" :value="user.firstName"></input-modal>
         </dd>
       </div>
-      <div class="items-center bg-white px-2 py-1 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="items-center bg-white px-0 py-1 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-normal uppercase text-gray-800">
           Last Name
         </dt>
@@ -40,7 +40,7 @@ defineProps({
           <input-modal placeholder="Last Name" :value="user.lastName"></input-modal>
         </dd>
       </div>
-      <div class="items-center bg-white px-2 py-1 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="items-center bg-white px-0 py-1 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-normal uppercase text-gray-800">
           City
         </dt>
@@ -48,7 +48,7 @@ defineProps({
           <input-modal placeholder="City" :value="user.address.city"></input-modal>
         </dd>
       </div>
-      <div class="items-center bg-white px-2 py-1 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="items-center bg-white px-0 py-1 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-normal uppercase text-gray-800">
           Email
         </dt>
@@ -56,7 +56,7 @@ defineProps({
           <input-modal type="email" placeholder="Email" :value="user.email"></input-modal>
         </dd>
       </div>
-      <div class="items-center bg-white px-2 py-1 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="items-center bg-white px-0 py-1 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-normal uppercase text-gray-800">
           Phone
         </dt>
