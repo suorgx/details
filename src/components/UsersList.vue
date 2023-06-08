@@ -70,7 +70,7 @@ const handleUserModal = (id) => {
             <button-modal
               @click="handleUserModal(user.id)"
               detail
-              text="Detail"
+              text="Details"
             ></button-modal>
           </div>
         </li>

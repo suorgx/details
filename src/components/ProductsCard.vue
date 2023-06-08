@@ -8,8 +8,8 @@ defineProps({
 </script>
 
 <template>
-  <ul class="max-w-md divide-y divide-gray-200" v-if="products">
-    <li class="p-0.5 sm:p-1" v-for="product in products" :key="product.id">
+  <ul class="divide-y divide-gray-200" v-if="products">
+    <li class="py-0.5 sm:py-1" v-for="product in products" :key="product.id">
       <div class="flex items-center space-x-2">
         <div class="flex-1 min-w-0">
           <p class="text-sm text-gray-900 truncate">

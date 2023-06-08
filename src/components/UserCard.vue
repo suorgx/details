@@ -13,7 +13,7 @@ defineProps({
   <div class="max-w-full overflow-hidden bg-white" v-if="user">
     <dl>
       <div class="items-center bg-white px-2 py-1 sm:py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt>
+        <dt class="text-sm font-normal uppercase text-gray-800">
           Image
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">

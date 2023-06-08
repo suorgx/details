@@ -55,7 +55,7 @@ const handleCartModal = (id) => {
             <button-modal
               @click="handleCartModal(cart.id)"
               detail
-              text="Detail"
+              text="Details"
             ></button-modal>
           </div>
         </li>
