@@ -1,4 +1,6 @@
 <script setup>
+import InputModal from './InputModal.vue'
+
 defineProps({
   user: {
     type: Object,
@@ -10,7 +12,7 @@ defineProps({
 <template>
   <div class="max-w-full overflow-hidden bg-white" v-if="user">
     <dl>
-      <div class="items-center bg-white px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="items-center bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt>
           Image
         </dt>
@@ -22,44 +24,44 @@ defineProps({
           />
         </dd>
       </div>
-      <div class="items-center bg-white px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="items-center bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-normal uppercase text-gray-800">
-          User
+          First Name
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-          {{ user.firstName }} {{ user.lastName }}
+          <input-modal placeholder="First Name" :value="user.firstName"></input-modal>
         </dd>
       </div>
-      <div class="items-center bg-white px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="items-center bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-normal uppercase text-gray-800">
+          Last Name
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+          <input-modal placeholder="Last Name" :value="user.lastName"></input-modal>
+        </dd>
+      </div>
+      <div class="items-center bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-normal uppercase text-gray-800">
           City
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-          {{ user.address.city }}
+          <input-modal placeholder="City" :value="user.address.city"></input-modal>
         </dd>
       </div>
-      <div class="items-center bg-white px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="items-center bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-normal uppercase text-gray-800">
-          Email address
+          Email
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-          {{ user.email }}
+          <input-modal type="email" placeholder="Email" :value="user.email"></input-modal>
         </dd>
       </div>
-      <div class="items-center bg-white px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="items-center bg-white px-4 py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-normal uppercase text-gray-800">
           Phone
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-          {{ user.phone }}
-        </dd>
-      </div>
-      <div class="items-center bg-white px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-        <dt class="text-sm font-normal uppercase text-gray-800">
-          Todo List
-        </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-          {{ user.todos }}
+          <input-modal type="tel" placeholder="Phone" :value="user.phone"></input-modal>
         </dd>
       </div>
     </dl>

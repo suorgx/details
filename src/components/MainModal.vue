@@ -1,44 +1,54 @@
 <script setup>
 import { useDataStore } from '../store/DataStore.js'
+import UserCard from './UserCard.vue'
+import TodosList from './TodosList.vue'
+import { computed } from 'vue'
+import ButtonModal from "./ButtonModal.vue";
 
 const dataStore = useDataStore()
 
 const closeModal = () => {
   dataStore.modal = false
-  dataStore.idModal = Number(id)
 }
 
+const user = computed(() => {
+  return dataStore.users.find(el => Number(el.id) === Number(dataStore.idModal))
+})
 </script>
 
 <template>
   <div
     tabindex="-1"
-    class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 max-h-full items-center justify-center"
+    class="fixed top-0 right-0 left-0 z-50 max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden p-4 md:inset-0"
     :class="dataStore.modal ? 'flex' : 'hidden'"
     @click.self="closeModal"
   >
-    <div class="relative w-full max-w-2xl max-h-full">
-      <div class="relative bg-white rounded-lg shadow">
-        <div class="flex items-start justify-between p-4 border-b rounded-t">
-          <h3 class="text-xl font-semibold text-gray-900">
-            Modal {{ dataStore.idModal }}
+    <div class="relative max-h-full w-full max-w-2xl">
+      <div class="relative rounded-lg bg-white shadow-2xl">
+        <div class="flex items-start justify-between rounded-t border-b p-4">
+          <h3 class="text-xl font-semibold text-gray-900" v-if="dataStore.idModal">
+            {{ user.firstName }} {{ user.lastName }}
           </h3>
           <button
             type="button"
-            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+            class="ml-auto inline-flex items-center rounded-lg bg-transparent text-sm text-gray-400 p-1.5 hover:bg-gray-200 hover:text-gray-900"
             @click="closeModal"
           >
-            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
           </button>
         </div>
-        <div class="p-6 space-y-6">
-          <p class="text-base leading-relaxed text-gray-500">
-            text
-          </p>
+        <div class="p-6 space-y-6" v-if="dataStore.idModal">
+          <user-card :user="user" v-if="dataStore.details"></user-card>
+          <todos-list :user="user" v-else></todos-list>
         </div>
-        <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
-          <button data-modal-hide="defaultModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">button 1</button>
-          <button data-modal-hide="defaultModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">button 2</button>
+        <div class="flex items-center rounded-b border-t border-gray-200 p-6 space-x-2">
+          <button-modal
+            text="Save"
+          ></button-modal>
+          <button-modal
+            detail
+            text="Cancel"
+          ></button-modal>
         </div>
       </div>
     </div>

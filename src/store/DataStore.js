@@ -5,8 +5,9 @@ export const useDataStore = defineStore('dataStore', {
     users: [],
     carts: [],
     modal: false,
+    details: true,
     loading: true,
-    idModal: 0
+    idModal: null
   }),
   actions: {
     async getUsers () {

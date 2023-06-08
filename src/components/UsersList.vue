@@ -1,5 +1,6 @@
 <script setup>
 import { useDataStore } from '../store/DataStore.js'
+import ButtonModal from './ButtonModal.vue'
 
 const dataStore = useDataStore()
 
@@ -12,11 +13,14 @@ defineProps({
 
 const handleTodoModal = (id) => {
   dataStore.modal = true
+  dataStore.details = false
+  dataStore.getTodos(id)
   dataStore.idModal = Number(id)
 }
 
 const handleDetailModal = (id) => {
   dataStore.modal = true
+  dataStore.details = true
   dataStore.idModal = Number(id)
 }
 </script>
@@ -25,14 +29,14 @@ const handleDetailModal = (id) => {
   <div class="block min-w-full overflow-hidden bg-white" v-if="users.length">
     <div class="w-full leading-normal">
       <div class="hidden w-full grid-cols-9 items-center text-left text-sm font-normal uppercase text-gray-800 sm:grid sm:justify-items-center">
-        <div class="p-1 sm:py-2 flex-shrink-0"></div>
-        <div class="px-5 py-3 col-span-2">
+        <div class="flex-shrink-0 p-1 sm:py-2"></div>
+        <div class="col-span-2 px-5 py-3">
           User
         </div>
-        <div class="px-5 py-3 col-span-2">
+        <div class="col-span-2 px-5 py-3">
           Email
         </div>
-        <div class="px-5 py-3 col-span-2">
+        <div class="col-span-2 px-5 py-3">
           Phone
         </div>
       </div>
@@ -42,37 +46,32 @@ const handleDetailModal = (id) => {
           v-for="user in users"
           :key="user.id"
         >
-          <div class="p-1 flex-shrink-0">
+          <div class="flex-shrink-0 p-1">
             <img
               alt="user image"
               :src="`${user.image}?set=set4`"
               class="block h-14 w-14 rounded-full object-cover"
             />
           </div>
-          <div class="p-1 sm:px-5 sm:py-2 col-span-2">
+          <div class="col-span-2 p-1 sm:px-5 sm:py-2">
             {{ user.firstName }} {{ user.lastName }}
           </div>
-          <div class="p-1 sm:px-5 sm:py-2 col-span-2">
+          <div class="col-span-2 p-1 sm:px-5 sm:py-2">
             {{ user.email }}
           </div>
-          <div class="p-1 sm:px-5 sm:py-2 col-span-2">
+          <div class="col-span-2 p-1 sm:px-5 sm:py-2">
             {{ user.phone }}
           </div>
-          <div class="p-1 flex gap-1 col-span-2">
-            <button
-              type="button"
+          <div class="col-span-2 flex gap-2 p-1">
+            <button-modal
               @click="handleTodoModal(user.id)"
-              class="flex-shrink-0 text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-2 py-1 lg:px-5 lg:py-2.5 text-center m-0"
-            >
-              To Do
-            </button>
-            <button
-              type="button"
+              text="To Do"
+            ></button-modal>
+            <button-modal
               @click="handleDetailModal(user.id)"
-              class="flex-shrink-0 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:border-green-500 focus:ring-4 focus:ring-green-200 font-medium rounded-full text-sm px-2 py-1 lg:px-5 lg:py-2.5 m-0"
-            >
-              Detail
-            </button>
+              detail
+              text="Detail"
+            ></button-modal>
           </div>
         </li>
       </ul>
