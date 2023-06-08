@@ -1,10 +1,32 @@
 <script setup>
-defineProps({
+import { computed } from 'vue'
+import { useDataStore } from '../store/DataStore.js'
+
+const dataStore = useDataStore()
+
+const props = defineProps({
   user: {
     type: Object,
     required: true
   }
 })
+
+const userTodo = computed(() => {
+  return props.user.todos
+})
+
+const toggleCheckbox = ($event, id) => {
+  let obj = {
+    id: id,
+    completed: $event.target.checked
+  }
+  const index = dataStore.newTodos.findIndex(todo => todo.id === id);
+  if (index !== -1) {
+    dataStore.newTodos[index] = obj
+  } else {
+    dataStore.newTodos.push(obj)
+  }
+}
 </script>
 
 <template>
@@ -14,8 +36,8 @@ defineProps({
         <dt class="text-sm font-normal uppercase text-gray-800">
           Todo List
         </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0" v-if="user.todos">
-          <ul class="rounded-lg border border-gray-200 bg-white text-sm text-gray-900" v-if="user.todos.length">
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0" v-if="userTodo">
+          <ul class="rounded-lg border border-gray-200 bg-white text-sm text-gray-900" v-if="userTodo.length">
             <li
               class="w-full rounded-t-lg"
               v-for="todo in user.todos"
@@ -27,6 +49,7 @@ defineProps({
                   :id="todo.id"
                   type="checkbox"
                   :checked="todo.completed ? 'checked' : null"
+                  @change="toggleCheckbox($event, todo.id)"
                 >
                 <label
                   class="ml-2 w-full py-3 text-sm text-gray-900"

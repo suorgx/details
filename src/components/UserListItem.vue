@@ -8,7 +8,7 @@ defineProps({
   }
 })
 
-const emit = defineEmits(['todos-modal', 'user-modal'])
+defineEmits(['todos-modal', 'user-modal'])
 </script>
 
 <template>

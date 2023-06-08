@@ -12,6 +12,7 @@ export const useDataStore = defineStore('dataStore', {
     newLastName: '',
     newEmail: '',
     newPhone: '',
+    newTodos: []
   }),
   getters: {
     user: (state) => {
@@ -78,6 +79,14 @@ export const useDataStore = defineStore('dataStore', {
       if (this.newLastName.length) this.users[this.idModal - 1].lastName = this.newLastName
       if (this.newEmail.length) this.users[this.idModal - 1].email = this.newEmail
       if (this.newPhone.length) this.users[this.idModal - 1].phone = this.newPhone
+    },
+    updateTodos () {
+      this.user.todos.forEach((todo) => {
+        const matchingTodo = this.newTodos.find((newTodo) => newTodo.id === todo.id);
+        if (matchingTodo && matchingTodo.completed !== todo.completed) {
+          todo.completed = matchingTodo.completed;
+        }
+      })
     }
   }
 })

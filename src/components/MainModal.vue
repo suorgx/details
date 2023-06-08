@@ -13,12 +13,13 @@ const closeModal = () => {
   dataStore.modalOption = ''
 }
 
-const title = computed(() => {
+const titleModal = computed(() => {
   return dataStore.modalOption === 'cart' ? `ID cart: ${dataStore.user.id}` : `${dataStore.user.firstName} ${dataStore.user.lastName}`
 })
 
 const handleSave = () => {
   if (dataStore.modalOption === 'user') dataStore.updateUser()
+  if (dataStore.modalOption === 'todos') dataStore.updateTodos()
   closeModal()
 }
 </script>
@@ -34,7 +35,7 @@ const handleSave = () => {
       <div class="relative rounded-lg bg-white shadow sm:shadow-2xl">
         <div class="flex items-start justify-between rounded-t border-b p-2 sm:p-4">
           <h3 class="text-xl text-gray-900" v-if="dataStore.idModal">
-            {{ title }}
+            {{ titleModal }}
           </h3>
           <button
             type="button"
