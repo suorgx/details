@@ -1,13 +1,14 @@
 import { defineStore } from 'pinia'
+import { computed } from 'vue'
 
 export const useDataStore = defineStore('dataStore', {
   state: () => ({
     users: [],
     carts: [],
     modal: false,
-    details: true,
+    modalOption: '',
     loading: true,
-    idModal: null
+    idModal: null,
   }),
   actions: {
     async getUsers () {

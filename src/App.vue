@@ -1,6 +1,7 @@
 <script setup>
 import { useDataStore } from './store/DataStore.js'
-import MainModal from "./components/MainModal.vue";
+import HeaderMain from './components/HeaderMain.vue'
+import MainModal from './components/MainModal.vue'
 
 const dataStore = useDataStore()
 if (!dataStore.users.length) dataStore.initialize()

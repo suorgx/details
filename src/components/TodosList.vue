@@ -10,7 +10,7 @@ defineProps({
 <template>
   <div class="max-w-full overflow-hidden bg-white" v-if="user">
     <dl>
-      <div class="items-center bg-white px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <div class="items-center bg-white px-2 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-normal uppercase text-gray-800">
           Todo List
         </dt>

@@ -1,28 +1,40 @@
 <script setup>
+import ButtonModal from './ButtonModal.vue'
+import {useDataStore} from '../store/DataStore.js'
+import ProductsCard from './ProductsCard.vue'
+
+const dataStore = useDataStore()
+
 defineProps({
   carts: {
     type: Array,
     required: true
   }
 })
+
+const handleCartModal = (id) => {
+  dataStore.idModal = id
+  dataStore.modalOption = 'cart'
+  dataStore.modal = true
+}
 </script>
+
+
 
 <template>
   <div class="block min-w-full overflow-hidden bg-white" v-if="carts.length">
     <div class="w-full leading-normal">
       <div class="hidden w-full grid-cols-8 items-center text-left text-sm font-normal uppercase text-gray-800 sm:grid">
         <div class="px-5 py-3">
-          Id
+          User
         </div>
         <div class="col-span-5 px-5 py-3">
-          products
+          Products
         </div>
         <div class="px-5 py-3">
-          userId
+          Total
         </div>
-        <div class="px-5 py-3">
-          total
-        </div>
+        <div class="px-5 py-3"></div>
       </div>
       <ul>
         <li
@@ -30,17 +42,21 @@ defineProps({
           v-for="cart in carts"
           :key="cart.id"
         >
-          <div class="p-1 sm:px-5 sm:py-2">
-            {{ cart.id }}
+          <div class="p-1 sm:px-5 sm:py-2" v-if="dataStore.users.length">
+            {{ dataStore.users[cart.id].firstName }} {{ dataStore.users[cart.id].lastName }}
           </div>
           <div class="col-span-5 p-1 sm:px-5 sm:py-2">
-            {{ cart.products }}
-          </div>
-          <div class="p-1 sm:px-5 sm:py-2">
-            {{ cart.userId }}
+            <products-card :products="cart.products"></products-card>
           </div>
           <div class="p-1 sm:px-5 sm:py-2">
             {{ cart.total }}
+          </div>
+          <div class="p-1">
+            <button-modal
+              @click="handleCartModal(cart.id)"
+              detail
+              text="Detail"
+            ></button-modal>
           </div>
         </li>
       </ul>

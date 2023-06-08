@@ -11,17 +11,17 @@ defineProps({
   }
 })
 
-const handleTodoModal = (id) => {
-  dataStore.modal = true
-  dataStore.details = false
+const handleTodosModal = (id) => {
+  dataStore.modalOption = 'todos'
   dataStore.getTodos(id)
-  dataStore.idModal = Number(id)
+  dataStore.idModal = id
+  dataStore.modal = true
 }
 
-const handleDetailModal = (id) => {
+const handleUserModal = (id) => {
+  dataStore.modalOption = 'user'
+  dataStore.idModal = id
   dataStore.modal = true
-  dataStore.details = true
-  dataStore.idModal = Number(id)
 }
 </script>
 
@@ -64,11 +64,11 @@ const handleDetailModal = (id) => {
           </div>
           <div class="col-span-2 flex gap-2 p-1">
             <button-modal
-              @click="handleTodoModal(user.id)"
+              @click="handleTodosModal(user.id)"
               text="To Do"
             ></button-modal>
             <button-modal
-              @click="handleDetailModal(user.id)"
+              @click="handleUserModal(user.id)"
               detail
               text="Detail"
             ></button-modal>

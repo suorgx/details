@@ -12,7 +12,7 @@ defineProps({
 <template>
   <input
     :type="type"
-    class="block w-full rounded-lg border border-gray-300 bg-transparent text-sm text-gray-900 p-2.5 focus:border-blue-500 focus:ring-blue-500"
+    class="block w-full rounded-lg border border-gray-300 bg-transparent text-sm text-gray-900 p-2 focus:border-blue-500 focus:ring-blue-500"
     :placeholder="placeholder"
     :value="value"
   >
