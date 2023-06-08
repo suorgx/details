@@ -12,10 +12,13 @@ defineProps({
 })
 
 const updateValue = (value, key) => {
-  if (key === 'first') dataStore.newFirstName = value
-  if (key === 'last') dataStore.newLastName = value
-  if (key === 'email') dataStore.newEmail = value
-  if (key === 'phone') dataStore.newPhone = value
+  const storeKeys = {
+    'first': 'newFirstName',
+    'last': 'newLastName',
+    'email': 'newEmail',
+    'phone': 'newPhone'
+  }
+  dataStore[storeKeys[key]] = value;
 }
 </script>
 
@@ -79,7 +82,8 @@ const updateValue = (value, key) => {
           <input-modal
             type="tel"
             placeholder="Phone"
-            :value="user.phone" @update:value="value => updateValue(value, 'phone')"
+            :value="user.phone"
+            @update:value="value => updateValue(value, 'phone')"
           ></input-modal>
         </dd>
       </div>

@@ -13,16 +13,12 @@ const closeModal = () => {
   dataStore.modalOption = ''
 }
 
-const user = computed(() => {
-  return dataStore.users.find(el => Number(el.id) === Number(dataStore.idModal))
-})
-
-const cart = computed(() => {
-  return dataStore.carts.find(el => Number(el.id) === Number(dataStore.idModal))
+const title = computed(() => {
+  return dataStore.modalOption === 'cart' ? `ID cart: ${dataStore.user.id}` : `${dataStore.user.firstName} ${dataStore.user.lastName}`
 })
 
 const handleSave = () => {
-  dataStore.updateUser()
+  if (dataStore.modalOption === 'user') dataStore.updateUser()
   closeModal()
 }
 </script>
@@ -38,7 +34,7 @@ const handleSave = () => {
       <div class="relative rounded-lg bg-white shadow sm:shadow-2xl">
         <div class="flex items-start justify-between rounded-t border-b p-2 sm:p-4">
           <h3 class="text-xl text-gray-900" v-if="dataStore.idModal">
-            {{ dataStore.modalOption === 'cart' ? `ID cart: ${cart.id}` : `${user.firstName} ${user.lastName}` }}
+            {{ title }}
           </h3>
           <button
             type="button"
@@ -49,9 +45,18 @@ const handleSave = () => {
           </button>
         </div>
         <div class="p-1 space-y-2 sm:p-6 sm:space-y-6 max-h-80 sm:max-h-full overflow-x-auto" v-if="dataStore.idModal">
-          <user-card :user="user" v-if="dataStore.modalOption === 'user'"></user-card>
-          <todos-list :user="user" v-else-if="dataStore.modalOption === 'todos'"></todos-list>
-          <cart-details :cart="cart" v-else-if="dataStore.modalOption === 'cart'"></cart-details>
+          <user-card
+            :user="dataStore.user"
+            v-if="dataStore.modalOption === 'user'"
+          ></user-card>
+          <todos-list
+            :user="dataStore.user"
+            v-else-if="dataStore.modalOption === 'todos'"
+          ></todos-list>
+          <cart-details
+            :cart="dataStore.cart"
+            v-else-if="dataStore.modalOption === 'cart'"
+          ></cart-details>
         </div>
         <div class="flex items-center rounded-b border-t border-gray-200 p-2 sm:p-6 space-x-2" v-if="dataStore.modalOption !== 'cart'">
           <button-modal

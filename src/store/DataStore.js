@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { computed } from 'vue'
 
 export const useDataStore = defineStore('dataStore', {
   state: () => ({
@@ -14,6 +13,18 @@ export const useDataStore = defineStore('dataStore', {
     newEmail: '',
     newPhone: '',
   }),
+  getters: {
+    user: (state) => {
+      return state.users.find(
+        (el) => Number(el.id) === Number(state.idModal)
+      )
+    },
+    cart: (state) => {
+      return state.carts.find(
+        (el) => Number(el.id) === Number(state.idModal)
+      )
+    },
+  },
   actions: {
     async getUsers () {
       try {
@@ -61,6 +72,8 @@ export const useDataStore = defineStore('dataStore', {
       ])
     },
     updateUser () {
+      if (this.idModal === null) return
+
       if (this.newFirstName.length) this.users[this.idModal - 1].firstName = this.newFirstName
       if (this.newLastName.length) this.users[this.idModal - 1].lastName = this.newLastName
       if (this.newEmail.length) this.users[this.idModal - 1].email = this.newEmail

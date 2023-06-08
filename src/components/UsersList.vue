@@ -1,6 +1,6 @@
 <script setup>
 import { useDataStore } from '../store/DataStore.js'
-import ButtonModal from './ButtonModal.vue'
+import UserListItem from './UserListItem.vue'
 
 const dataStore = useDataStore()
 
@@ -42,39 +42,13 @@ const handleUserModal = (id) => {
         </div>
       </div>
       <ul>
-        <li
-          class="grid w-full grid-cols-1 items-center text-sm text-gray-900 duration-200 whitespace-no-wrap sm:grid-cols-9 sm:justify-items-center"
+        <user-list-item
           v-for="user in users"
+          :user="user"
           :key="user.id"
-        >
-          <div class="flex-shrink-0 p-1">
-            <img
-              alt="user image"
-              :src="`${user.image}?set=set4`"
-              class="block h-14 w-14 rounded-full object-cover"
-            />
-          </div>
-          <div class="col-span-2 p-1 sm:px-5 sm:py-2">
-            {{ user.firstName }} {{ user.lastName }}
-          </div>
-          <div class="col-span-2 p-1 sm:px-5 sm:py-2">
-            {{ user.email }}
-          </div>
-          <div class="col-span-2 p-1 sm:px-5 sm:py-2">
-            {{ user.phone }}
-          </div>
-          <div class="col-span-2 flex gap-2 p-1">
-            <button-modal
-              @click="handleTodosModal(user.id)"
-              text="To Do"
-            ></button-modal>
-            <button-modal
-              @click="handleUserModal(user.id)"
-              detail
-              text="Edit"
-            ></button-modal>
-          </div>
-        </li>
+          @user-modal="value => handleUserModal(value)"
+          @todos-modal="value => handleTodosModal(value)"
+        ></user-list-item>
       </ul>
     </div>
   </div>

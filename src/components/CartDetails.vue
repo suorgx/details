@@ -34,7 +34,7 @@ defineProps({
         <div class="flex items-center space-x-2">
           <div class="flex-1 min-w-0">
             <p class="text-sm text-gray-900 truncate">
-              Buyer
+              User
             </p>
           </div>
           <div class="inline-flex items-center text-base text-gray-900">
