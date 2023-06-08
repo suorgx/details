@@ -1,4 +1,4 @@
-# [Details](details-suorgx.vercel.app)
+# [Details](https://details-suorgx.vercel.app/)
 
 ## О проекте:
 
